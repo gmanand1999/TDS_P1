@@ -16,8 +16,8 @@ jobs:
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
       with:
-        username: ${{ gmanand1999 }}  # Use GitHub Secrets for security
-        password: ${{ Giri@9047 }}  # Use GitHub Secrets for security
+        username: ${{ secrets.DOCKER_USERNAME }}  # Use GitHub Secrets for security
+        password: ${{ secrets.DOCKER_PASSWORD }}  # Use GitHub Secrets for security
 
     - name: Build the Docker image
       run: docker build -t gmanand1999/tds_p1:dockerimage .
