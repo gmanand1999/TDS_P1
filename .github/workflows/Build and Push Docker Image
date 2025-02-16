@@ -1,0 +1,26 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main  # Change this to your default branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}  # Use GitHub Secrets for security
+        password: ${{ secrets.DOCKER_PASSWORD }}  # Use GitHub Secrets for security
+
+    - name: Build the Docker image
+      run: docker build -t gmanand1999/tds_p1:dockerimage .
+
+    - name: Push the Docker image
+      run: docker push gmanand1999/tds_p1:dockerimage
